@@ -1,0 +1,51 @@
+Instalação em um ambiente Linux, sem a existência de instalação prévia do servidor de aplicação JBoss
+
+1 - Garantir que o Java 7 está instalado.
+
+	1.1 - Instalar o java
+		Opção 1: OpenJDK (http://openjdk.java.net/install/)
+			Debian, Ubuntu, etc.
+				> sudo apt-get install openjdk-7-jdk
+
+			Fedora, Oracle Linux, Red Hat Enterprise Linux, etc
+				> sudo yum install java-1.7.0-openjdk
+
+		Opção 2: Oracle Java SE (http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html)
+
+	1.2 - Configurar o JAVA_HOME
+		Criar o arquivo /etc/java.conf com o conteúdo: JAVA_HOME=local de instalação do java, por exemplo: JAVA_HOME=/usr/bin/java
+
+2. Instalar o unzip:
+	Debian, Ubuntu, etc.
+		$> sudo apt-get install unzip
+
+	Fedora, Oracle Linux, Red Hat Enterprise Linux, etc
+		$> sudo yum install unzip
+
+3. Se estiver utilizando o sistema operacional Debian executar os seguintes passos:
+
+	3.1 Editar o arquivo /etc/locale.gen e apagar o caractere "#" da linha "# pt_BR.UTF-8 UTF-8".
+
+	3.2 Após a edição acima executar o comando
+		$> sudo locale-gen
+
+	3.3 Reiniciar o computador.
+
+4. Instalar e configurar o servidor de aplicação compatível com o e-SUS AB PEC (JBoss AS 7.2.0):
+
+	4.1 Execute o script de instalação: $> sh instalador_linux.sh
+
+	4.2 Para iniciar a aplicação, execute:
+
+		- Distribuições LSB
+			$> sudo sh /opt/e-SUS/jboss-as-7.2.0.Final/bin/init.d/jboss-as-standalone-lsb.sh start
+
+		- Distribuições Non LSB
+			$> sudo sh /opt/e-SUS/jboss-as-7.2.0.Final/bin/init.d/jboss-as-standalone-non-lsb.sh start
+
+		OBS: Após iniciar a aplicação aguarde em torno de 2 minutos para abrí-la no navegador
+
+	4.3 Com a aplicação rodando, vá no seu navegador e digite a seguinte URL: IP_DO_SERVIDOR:8080/esus
+
+
+OBS: Para desinstalar o sistema execute o arquivo desintalador.sh ou desinstalador-non-lsb.sh, localizado na pasta /opt/e-SUS
